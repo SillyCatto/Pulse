@@ -1,9 +1,11 @@
 ﻿namespace Pulse;
 
-class Program
+using Spectre.Console;
+
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        AnsiConsole.Markup("[underline red]Hello[/] World!");
     }
 }
