@@ -21,7 +21,20 @@ public class HomePage : IPageAdapter
 
     public void Run()
     {
-        // TODO
-        throw new NotImplementedException();
+        View();
+
+        string choice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Choose an option:")
+                .AddChoices(_pageManager.GetPageNames().Append("Exit"))
+        );
+
+        if (choice.Equals("Exit"))
+        {
+            AnsiConsole.MarkupLine("[bold green]Goodbye![/]");
+            return;
+        }
+        
+        _pageManager.Navigate(choice);
     }
 }
