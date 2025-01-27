@@ -14,4 +14,10 @@ public class App
         _pageManager.RegisterPage("Home", () => new HomePage(_pageManager));
         
     }
+
+    public void Run()
+    {
+        Console.Clear();
+        _pageManager.Navigate("Home");
+    }
 }

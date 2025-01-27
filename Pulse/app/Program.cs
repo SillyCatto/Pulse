@@ -1,4 +1,6 @@
-﻿namespace Pulse;
+﻿using Pulse.core;
+
+namespace Pulse;
 
 using Spectre.Console;
 
@@ -6,6 +8,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        AnsiConsole.Markup("[underline red]Hello[/] World!");
+        var app = new App();
+        app.Run();
     }
 }
