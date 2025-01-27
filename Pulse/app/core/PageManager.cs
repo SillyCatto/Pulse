@@ -21,7 +21,8 @@ public class PageManager
         }
         else
         {
-            AnsiConsole.WriteLine("[bold red]ERROR[/]  Page not found");
+            AnsiConsole.MarkupLine("[bold red]ERROR[/]  Page not found");
+            AnsiConsole.WriteLine();
         }
     }
 
