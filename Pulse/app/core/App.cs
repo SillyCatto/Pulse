@@ -12,12 +12,14 @@ public class App
         
         // register pages
         _pageManager.RegisterPage("Home", () => new HomePage(_pageManager));
+        _pageManager.RegisterPage("BMI Calculator", () => new BMIPage());
+        _pageManager.RegisterPage("Healthy Habit Todos", () => new HabitTodoPage());
+        _pageManager.RegisterPage("Mental Health Tracker", () => new MentalHealthPage());
         
     }
 
     public void Run()
     {
-        Console.Clear();
         _pageManager.Navigate("Home");
     }
 }

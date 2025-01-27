@@ -14,8 +14,9 @@ public class HomePage : IPageAdapter
     
     public void View()
     {
-        AnsiConsole.Write(new FigletText("Pulse").Centered().Color(Color.Purple_1));
-        AnsiConsole.MarkupLine("[bold blue]Your Personal Health Tracker![/]");
+        Console.Clear();
+        AnsiConsole.Write(new FigletText("Pulse").Centered().Color(Color.Red));
+        AnsiConsole.MarkupLine("[bold yellow]Your Personal Health Tracker![/]");
         AnsiConsole.WriteLine();
     }
 
