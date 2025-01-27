@@ -20,6 +20,7 @@ public class App
 
     public void Run()
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         _pageManager.Navigate("Home");
     }
 }
