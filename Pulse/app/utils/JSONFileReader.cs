@@ -25,6 +25,24 @@ public class JSONFileReader : IFileReader
 
     public object? GetValue(string keyPath)
     {
-        throw new NotImplementedException();
+        var data = Read();
+        if (data == null) return null;
+
+        string[] keys = keyPath.Split('.');
+        object? current = data;
+
+        foreach (var key in keys)
+        {
+            if (current is Dictionary<string, object> dict && dict.TryGetValue(key, out var next))
+            {
+                current = next;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        return current;
     }
 }
