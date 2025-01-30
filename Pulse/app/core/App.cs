@@ -24,7 +24,7 @@ public class App
     public void Run()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        //Test();
+        Test();
         _pageManager.Navigate("Home");
     }
 
