@@ -34,7 +34,6 @@ public class HomePage : IPageAdapter
             ))
         {
             Expand = true,
-            Header = new PanelHeader("Daily Quotes"),
             Border = BoxBorder.Rounded
         };
         AnsiConsole.WriteLine();

@@ -1,4 +1,5 @@
-﻿using Pulse.Pages;
+﻿using Pulse.constants;
+using Pulse.Pages;
 using Pulse.utils;
 
 namespace Pulse.core;
@@ -23,11 +24,11 @@ public class App
     public void Run()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
+        //Test();
         _pageManager.Navigate("Home");
-        test();
     }
 
-    private void test()
+    private void Test()
     {
         Dictionary<string, object> data = new Dictionary<string, object>
         {
@@ -41,7 +42,8 @@ public class App
             }
         };
 
-        var writer = new JSONFileWriter("user.json");
+        var writer = new JSONFileWriter(FilePath.UserDataPath);
         writer.Write(data);
+        writer.UpdateValue("user.age", 10);
     }
 }
