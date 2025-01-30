@@ -13,6 +13,17 @@ public class JSONFileWriter : IFileWriter
     
     public void Write(Dictionary<string, object> data)
     {
+        string dir = Path.GetDirectoryName(_filePath);
+        if (!Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+        
+        if (!File.Exists(_filePath))
+        {
+            File.WriteAllText(_filePath, "{}");
+        }
+        
         string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(_filePath, json);
         
