@@ -24,7 +24,7 @@ public class App
     public void Run()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Test();
+        // Test();
         _pageManager.Navigate("Home");
     }
 
@@ -41,9 +41,10 @@ public class App
                 
             }
         };
-
+        
         var writer = new JSONFileWriter(FilePath.UserDataPath);
         writer.Write(data);
         writer.UpdateValue("user.age", 10);
+        // Console.WriteLine(new JSONFileReader(FilePath.UserDataPath).Read());
     }
 }
