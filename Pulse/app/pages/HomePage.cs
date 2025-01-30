@@ -28,9 +28,10 @@ public class HomePage : IPageAdapter
 
     private void DrawQuote()
     {
+        var quote = Quotes.GetRandom();
         var quotePanel = new Panel(
             new Rows(
-                new Markup(":sparkles: [italic #00ffff]Health is wealth[/]").Centered()
+                new Markup($":sparkles: [italic #00ffff]{quote}[/]").Centered()
             ))
         {
             Expand = true,
@@ -49,7 +50,7 @@ public class HomePage : IPageAdapter
         AnsiConsole.WriteLine();
         AnsiConsole.MarkupLine("[grey]Use ↑/↓ to navigate, Enter to select an option.[/]");
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine("[yellow]Choose an option:[/]");
+        AnsiConsole.MarkupLine("[underline yellow]Choose an option:[/]");
     }
 
     public void Run()
