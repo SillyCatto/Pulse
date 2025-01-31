@@ -46,23 +46,26 @@ public class HomePage : IPageAdapter
         Console.Clear();
         DrawTitle();
         DrawQuote();
+        
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
         AnsiConsole.MarkupLine("[grey]Use ↑/↓ to navigate, Enter to select an option.[/]");
+        
         AnsiConsole.WriteLine();
         AnsiConsole.MarkupLine("[underline yellow]Choose an option:[/]");
+        AnsiConsole.WriteLine();
     }
 
     public void Run()
     {
         View();
 
+        // later add: .Where(name => name != "Home") here to remove "Home"
+        var choices = _pageManager.GetPageNames().Append("Exit").ToList();
+
         string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
-                .AddChoices(_pageManager
-                    .GetPageNames() // add: .Where(name => name != "Home") here to remove "Home"
-                    .Append("Exit")
-                )
+                .AddChoices(choices)
         );
 
         if (choice.Equals("Exit"))

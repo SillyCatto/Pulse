@@ -16,8 +16,7 @@ public class JSONFileReader : IFileReader
     {
         if (!File.Exists(_filePath))
         {
-            var writer = new JSONFileWriter(_filePath);
-            writer.Write(new Dictionary<string, object>()); // create empty json file
+            return new Dictionary<string, object>(); // return empty dict
         }
 
         string json = File.ReadAllText(_filePath);
