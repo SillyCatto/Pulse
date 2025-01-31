@@ -1,5 +1,6 @@
 ﻿using Pulse.constants;
 using Pulse.models;
+using Pulse.models.record;
 using Pulse.Pages;
 using Pulse.utils;
 

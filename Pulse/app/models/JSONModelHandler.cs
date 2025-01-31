@@ -54,7 +54,7 @@ public class JSONModelHandler<T> where T : IModelAdapter, new()
         bool updated = _model.Update(key, newValue);
         return updated;
     }
-
+    
     public T AsModel()
     {
         return _model;

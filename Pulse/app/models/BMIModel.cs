@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+﻿using Pulse.models.record;
 
 namespace Pulse.models;
 

@@ -1,4 +1,4 @@
-﻿namespace Pulse.models;
+﻿namespace Pulse.models.record;
 
 public class BMIRecord
 {
