@@ -1,39 +1,71 @@
-﻿namespace Pulse.models;
+﻿using System.Text.Json;
+
+namespace Pulse.models;
 
 public class BMIModel : IModelAdapter
 {
+    private Dictionary<string, BMIRecord> _bmiRecords;
+
+    public BMIModel()
+    {
+        _bmiRecords = new Dictionary<string, BMIRecord>();
+    }
+
     public bool Validate()
     {
-        throw new NotImplementedException();
+        foreach (var entry in _bmiRecords)
+        {
+            if (entry.Value.Value < 10 || entry.Value.Value > 50) // realistic BMI values
+                return false;
+        }
+        return true;
     }
 
-    public Dictionary<string, object> Load()
+    public Dictionary<string, object> ToDict()
     {
-        throw new NotImplementedException();
+        var result = new Dictionary<string, object>();
+        foreach (var entry in _bmiRecords)
+        {
+            result[entry.Key] = entry.Value;
+        }
+        return result;
+    }
+    
+
+    public void AddRecord(string date, object value)
+    {
+        if (_bmiRecords.ContainsKey(date))
+            throw new InvalidOperationException($"BMI record for {date} already exists.");
+        
+        if (value is BMIRecord record)
+        {
+            _bmiRecords[date] = record;
+        }
+        else if (value is double bmiValue)
+        {
+            _bmiRecords[date] = new BMIRecord(bmiValue);
+        }
+        else
+        {
+            throw new ArgumentException("BMI value must be a double or a BMIRecord.");
+        }
     }
 
-    public void Save()
+    public bool RemoveRecord(string date)
     {
-        throw new NotImplementedException();
+        return _bmiRecords.Remove(date);
     }
 
-    public string ToJson()
+    public bool Update(string date, object newValue)
     {
-        throw new NotImplementedException();
-    }
+        if (!(newValue is double bmiValue))
+            throw new ArgumentException("BMI value must be a double.");
 
-    public void AddRecord(string key, object value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool RemoveRecord(string key)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Update(string key, object newValue)
-    {
-        throw new NotImplementedException();
+        if (_bmiRecords.ContainsKey(date))
+        {
+            _bmiRecords[date] = new BMIRecord(bmiValue);
+            return true;
+        }
+        return false;
     }
 }

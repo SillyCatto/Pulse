@@ -1,4 +1,5 @@
 ﻿using Pulse.constants;
+using Pulse.models;
 using Pulse.Pages;
 using Pulse.utils;
 
@@ -24,27 +25,31 @@ public class App
     public void Run()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        // Test();
+        //Test();
         _pageManager.Navigate("Home");
     }
 
     private void Test()
     {
-        Dictionary<string, object> data = new Dictionary<string, object>
-        {
-            {
-                "user", new Dictionary<string, object>
-                {
-                    { "name", "Alice" } 
-                    
-                } 
-                
-            }
-        };
-        
-        var writer = new JSONFileWriter(FilePath.UserDataPath);
-        writer.Write(data);
-        writer.UpdateValue("user.age", 10);
+        // Dictionary<string, object> data = new Dictionary<string, object>
+        // {
+        //     {
+        //         "user", new Dictionary<string, object>
+        //         {
+        //             { "name", "Alice" } 
+        //             
+        //         } 
+        //         
+        //     }
+        // };
+        //
+        // var writer = new JSONFileWriter(FilePath.UserDataPath);
+        // writer.Write(data);
+        // writer.UpdateValue("user.age", 10);
         // Console.WriteLine(new JSONFileReader(FilePath.UserDataPath).Read());
+
+        var bmiModel = new JSONModelHandler<BMIModel>(FilePath.BMIDataPath);
+        bmiModel.AddRecord(DateTime.Now.ToString(DateString.Format), new BMIRecord(25));
+        bmiModel.Save();
     }
 }

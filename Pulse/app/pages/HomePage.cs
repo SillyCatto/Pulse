@@ -52,8 +52,7 @@ public class HomePage : IPageAdapter
         AnsiConsole.MarkupLine("[grey]Use ↑/↓ to navigate, Enter to select an option.[/]");
         
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine("[underline yellow]Choose an option:[/]");
-        AnsiConsole.WriteLine();
+        AnsiConsole.MarkupLine("[yellow]Choose an option:[/]");
     }
 
     public void Run()
