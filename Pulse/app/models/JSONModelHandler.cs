@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Pulse.app.models;
 using Pulse.utils;
 
 namespace Pulse.models;
@@ -37,7 +38,7 @@ public class JSONModelHandler<T> where T : IModelAdapter, new()
         _writer.Write(_model.ToDict());
     }
 
-    public void AddRecord(string key, object value)
+    public void AddRecord(string key, List<string> value)
     {
         _model.AddRecord(key, value);
     }
@@ -49,13 +50,13 @@ public class JSONModelHandler<T> where T : IModelAdapter, new()
         return isRemoved;
     }
 
-    public bool Update(string key, object newValue)
+    public bool Update(string key, List<string> newValue)
     {
         bool updated = _model.Update(key, newValue);
         return updated;
     }
 
-    public Dictionary<string, object> ToDict()
+    public Dictionary<string, List<string>> ToDict()
     {
         return _model.ToDict();
     }

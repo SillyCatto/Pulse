@@ -1,7 +1,7 @@
-﻿namespace Pulse.utils;
+﻿namespace Pulse.app.utils;
 
 public interface IFileWriter
 {
-    void Write(Dictionary<string, object> data);
-    void UpdateValue(string keyPath, object newValue);
+    void Write(Dictionary<string, List<string>> data);
+    void UpdateValue(string keyPath, List<string> record);
 }

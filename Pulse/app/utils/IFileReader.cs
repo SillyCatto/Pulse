@@ -1,7 +1,7 @@
-﻿namespace Pulse.utils;
+﻿namespace Pulse.app.utils;
 
 public interface IFileReader
 {
-    Dictionary<string, object>? Read();
-    object? GetValue(string keyPath);
+    Dictionary<string, List<string>>? Read();
+    object? GetValue(string key);
 }

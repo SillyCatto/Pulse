@@ -1,4 +1,5 @@
-﻿using Pulse.core;
+﻿using Pulse.app.models;
+using Pulse.core;
 using Pulse.models;
 using Pulse.utils;
 using Spectre.Console;
@@ -74,5 +75,18 @@ public class BMIPage : IPageAdapter
         {
             App.Exit();
         }
+    }
+    
+    private static string GetVerdict(double bmi)
+    {
+        return bmi switch
+        {
+            < 18.5 => "Underweight",
+            < 25.0 => "Normal weight",
+            < 30.0 => "Pre-obesity",
+            < 35.0 => "Obesity class I",
+            < 40.0 => "Obesity class II",
+            _ => "Obesity class III"
+        };
     }
 }

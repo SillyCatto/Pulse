@@ -1,71 +1,75 @@
-﻿using Pulse.app.models.record;
-
-namespace Pulse.models;
+﻿namespace Pulse.app.models;
 
 public class BMIModel : IModelAdapter
-{
-    private Dictionary<string, BMIRecord> _bmiRecords;
-
-    public BMIModel()
     {
-        _bmiRecords = new Dictionary<string, BMIRecord>();
-    }
+        private Dictionary<string, List<string>> _bmiRecords;
 
-    public bool Validate()
-    {
-        foreach (var entry in _bmiRecords)
+        public BMIModel()
         {
-            if (entry.Value.Value < 10 || entry.Value.Value > 50) // realistic BMI values
-                return false;
+            _bmiRecords = new Dictionary<string, List<string>>();
         }
-        return true;
-    }
 
-    public Dictionary<string, object> ToDict()
-    {
-        var result = new Dictionary<string, object>();
-        foreach (var entry in _bmiRecords)
+        public bool Validate()
         {
-            result[entry.Key] = entry.Value;
-        }
-        return result;
-    }
-    
-
-    public void AddRecord(string date, object value)
-    {
-        if (_bmiRecords.ContainsKey(date))
-            throw new InvalidOperationException($"BMI record for {date} already exists.");
-        
-        if (value is BMIRecord record)
-        {
-            _bmiRecords[date] = record;
-        }
-        else if (value is double bmiValue)
-        {
-            _bmiRecords[date] = new BMIRecord(bmiValue);
-        }
-        else
-        {
-            throw new ArgumentException("BMI value must be a double or a BMIRecord.");
-        }
-    }
-
-    public bool RemoveRecord(string date)
-    {
-        return _bmiRecords.Remove(date);
-    }
-
-    public bool Update(string date, object newValue)
-    {
-        if (!(newValue is double bmiValue))
-            throw new ArgumentException("BMI value must be a double.");
-
-        if (_bmiRecords.ContainsKey(date))
-        {
-            _bmiRecords[date] = new BMIRecord(bmiValue);
+            foreach (var entry in _bmiRecords)
+            {
+                if (entry.Value is List<string> bmiRecord && bmiRecord.Count > 0)
+                {
+                    if (double.TryParse(bmiRecord[0], out double bmiValue))
+                    {
+                        if (bmiValue < 10 || bmiValue > 50)
+                            return false;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
-        return false;
+
+        public Dictionary<string, List<string>> ToDict()
+        {
+            var result = new Dictionary<string, List<string>>();
+            foreach (var entry in _bmiRecords)
+            {
+                result[entry.Key] = entry.Value;
+            }
+            return result;
+        }
+
+        public void AddRecord(string date, List<string> value)
+        {
+            if (_bmiRecords.ContainsKey(date))
+                throw new InvalidOperationException($"BMI record for {date} already exists.");
+            
+            if (value is List<string> bmiRecord)
+            {
+                // simply add the List<string> to the records
+                _bmiRecords[date] = bmiRecord;
+            }
+            else
+            {
+                throw new ArgumentException("BMI record must be a List<string>.");
+            }
+        }
+
+        public bool RemoveRecord(string date)
+        {
+            return _bmiRecords.Remove(date);
+        }
+
+        public bool Update(string date, List<string> newValue)
+        {
+            if (newValue is List<string> bmiRecord)
+            {
+                _bmiRecords[date] = bmiRecord;
+                return true;
+            }
+
+            throw new ArgumentException("BMI value must be a double or a List<string>.");
+        }
+
+        
     }
-}

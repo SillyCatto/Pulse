@@ -1,83 +1,63 @@
 ﻿using System.Text.Json;
+using Pulse.app.utils;
 
 namespace Pulse.utils;
 
 public class JSONFileReader : IFileReader
-{
-    private readonly string _filePath;
-
-    public JSONFileReader(string filePath)
     {
-        _filePath = filePath;
-    }
+        private readonly string _filePath;
 
-
-    public Dictionary<string, object>? Read()
-    {
-        if (!File.Exists(_filePath))
+        public JSONFileReader(string filePath)
         {
-            return new Dictionary<string, object>(); // return empty dict
+            _filePath = filePath;
         }
-
-        string json = File.ReadAllText(_filePath);
-        var jsonData = JsonSerializer.Deserialize<Dictionary<string, object>>(json) ?? new Dictionary<string, object>();
-
-        return ConvertJsonElements(jsonData);
-    }
-
-    public object? GetValue(string keyPath)
-    {
-        var data = Read();
-        if (data == null) return null;
-
-        string[] keys = keyPath.Split('.');
-        object? current = data;
-
-        foreach (var key in keys)
+        
+        public Dictionary<string, List<string>>? Read()
         {
-            if (current is Dictionary<string, object> dict && dict.TryGetValue(key, out var next))
+            if (!File.Exists(_filePath))
             {
-                current = next;
+                return new Dictionary<string, List<string>>(); // return an empty dict
             }
-            else
-            {
-                return null;
-            }
+
+            string json = File.ReadAllText(_filePath);
+            var jsonData = JsonSerializer
+                .Deserialize<Dictionary<string, JsonElement>>(json) ?? new Dictionary<string, JsonElement>();
+
+            return ConvertJsonElements(jsonData);
         }
-
-        return current;
-    }
-    
-    private Dictionary<string, object> ConvertJsonElements(Dictionary<string, object> dict)
-    {
-        var result = new Dictionary<string, object>();
-
-        foreach (var kvp in dict)
+        
+        public object? GetValue(string key)
         {
-            if (kvp.Value is JsonElement element)
-            {
-                result[kvp.Key] = ConvertJsonElement(element);
-            }
-            else
-            {
-                result[kvp.Key] = kvp.Value;
-            }
+            var data = Read();
+            if (data == null || !data.ContainsKey(key)) return null;
+
+            return data[key];
         }
-
-        return result;
-    }
-    
-    private object ConvertJsonElement(JsonElement element)
-    {
-        return element.ValueKind switch
+        
+        private Dictionary<string, List<string>> ConvertJsonElements(Dictionary<string, JsonElement> dict)
         {
-            JsonValueKind.Object => ConvertJsonElements(JsonSerializer.Deserialize<Dictionary<string, object>>(element.GetRawText())),
-            JsonValueKind.Array => element.EnumerateArray().Select(ConvertJsonElement).ToList(),
-            JsonValueKind.String => element.GetString(),
-            JsonValueKind.Number => element.TryGetInt64(out long l) ? l : element.GetDouble(),
-            JsonValueKind.True => true,
-            JsonValueKind.False => false,
-            _ => null
-        };
+            var result = new Dictionary<string, List<string>>();
+
+            foreach (var kvp in dict)
+            {
+                if (kvp.Value.ValueKind == JsonValueKind.Array)
+                {
+                    var list = new List<string>();
+                    foreach (var item in kvp.Value.EnumerateArray())
+                    {
+                        if (item.ValueKind == JsonValueKind.String)
+                        {
+                            list.Add(item.GetString()!);
+                        }
+                    }
+                    result[kvp.Key] = list;
+                }
+                else
+                {
+                    result[kvp.Key] = new List<string> { kvp.Value.GetString()! };
+                }
+            }
+
+            return result;
+        }
     }
-}

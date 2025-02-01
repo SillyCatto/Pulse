@@ -1,4 +1,4 @@
-﻿using Pulse.app.models.record;
+﻿using Pulse.app.models;
 using Pulse.app.pages;
 using Pulse.models;
 using Pulse.utils;
@@ -56,8 +56,8 @@ public class App
         // writer.UpdateValue("user.age", 10);
         // Console.WriteLine(new JSONFileReader(FilePath.UserDataPath).Read());
 
-        var bmiModel = new JSONModelHandler<BMIModel>(Constants.BMIDataPath);
-        bmiModel.AddRecord(DateTime.Now.ToString(Constants.DateStringFormat), new BMIRecord(25));
-        bmiModel.Save();
+        // var bmiModel = new JSONModelHandler<BMIModel>(Constants.BMIDataPath);
+        // bmiModel.AddRecord(DateTime.Now.ToString(Constants.DateStringFormat), new BMIRecord(25));
+        // bmiModel.Save();
     }
 }

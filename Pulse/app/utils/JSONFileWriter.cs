@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Pulse.app.utils;
 
 namespace Pulse.utils;
 
@@ -11,7 +12,7 @@ public class JSONFileWriter : IFileWriter
         _filePath = filePath;
     }
     
-    public void Write(Dictionary<string, object> data)
+    public void Write(Dictionary<string, List<string>> data)
     {
         string dir = Path.GetDirectoryName(_filePath);
         if (!Directory.Exists(dir))
@@ -26,29 +27,18 @@ public class JSONFileWriter : IFileWriter
         
         string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(_filePath, json);
-        
     }
 
-    public void UpdateValue(string keyPath, object newValue)
+    public void UpdateValue(string key, List<string> record)
     {
         var data = new JSONFileReader(_filePath).Read();
 
-        string[] keys = keyPath.Split('.');
-        Dictionary<string, object> current = data;
-
-        for (int i = 0; i < keys.Length - 1; i++)
+        if (data == null)
         {
-            string key = keys[i];
-
-            if (!current.ContainsKey(key) || current[key] is not Dictionary<string, object>)
-            {
-                current[key] = new Dictionary<string, object>();
-            }
-
-            current = (Dictionary<string, object>)current[key];
+            data = new Dictionary<string, List<string>>();
         }
-
-        current[keys[^1]] = newValue;
+        
+        data[key] = record;
         Write(data);
     }
 }
