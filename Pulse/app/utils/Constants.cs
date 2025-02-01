@@ -1,9 +1,11 @@
-﻿namespace Pulse.constants;
+﻿namespace Pulse.utils;
 
-public class FilePath
+public class Constants
 {
     public static readonly string UserDataPath = "data/user.json";
     public static readonly string BMIDataPath = "data/bmi.json";
     public static readonly string HabitTodoPath = "data/todo.json";
     public static readonly string MentalHealthDataPath = "data/mentalhealth.json";
+    
+    public static readonly string DateStringFormat = "yyyy-MM-dd";
 }
