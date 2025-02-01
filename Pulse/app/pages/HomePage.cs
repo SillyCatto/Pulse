@@ -43,7 +43,7 @@ public class HomePage : IPageAdapter
     
     public void View()
     {
-        Console.Clear();
+        AnsiConsole.Clear();
         DrawTitle();
         DrawQuote();
         
@@ -69,8 +69,7 @@ public class HomePage : IPageAdapter
 
         if (choice.Equals("Exit"))
         {
-            AnsiConsole.MarkupLine("[bold green]Goodbye![/]");
-            return;
+            App.Exit();
         }
         
         _pageManager.Navigate(choice);
