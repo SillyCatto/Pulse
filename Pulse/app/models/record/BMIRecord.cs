@@ -1,6 +1,6 @@
-﻿namespace Pulse.models.record;
+﻿namespace Pulse.app.models.record;
 
-public class BMIRecord
+public class BMIRecord : IRecord
 {
     public double Value { get; }
     public string Verdict { get; }
@@ -22,5 +22,10 @@ public class BMIRecord
             < 40.0 => "Obesity class II",
             _ => "Obesity class III"
         };
+    }
+
+    public List<string> GetValues()
+    {
+        return new List<string> { Value.ToString("F2"), Verdict };
     }
 }

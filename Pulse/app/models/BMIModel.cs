@@ -1,4 +1,4 @@
-﻿using Pulse.models.record;
+﻿using Pulse.app.models.record;
 
 namespace Pulse.models;
 

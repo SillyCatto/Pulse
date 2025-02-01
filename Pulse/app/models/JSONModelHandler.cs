@@ -54,6 +54,11 @@ public class JSONModelHandler<T> where T : IModelAdapter, new()
         bool updated = _model.Update(key, newValue);
         return updated;
     }
+
+    public Dictionary<string, object> ToDict()
+    {
+        return _model.ToDict();
+    }
     
     public T AsModel()
     {
