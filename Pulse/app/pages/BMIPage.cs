@@ -42,8 +42,11 @@ public class BMIPage : IPageAdapter
             foreach (var entry in bmiRecord)
             {
                 var record = entry.Value;
-                bmiRecordTable.AddRow(entry.Key, record.Value.ToString("F2"), record.Verdict);
+                bmiRecordTable.AddRow(entry.Key, record[0], record[1]);
             }
+
+            bmiRecordTable.Expand();
+            AnsiConsole.Write(bmiRecordTable);
         }
     }
 
@@ -56,6 +59,7 @@ public class BMIPage : IPageAdapter
             Style = Style.Parse($"bold {Color.Orange1}")
         });
         AnsiConsole.WriteLine();
+        RecordTable();
     }
 
     public void Run()
