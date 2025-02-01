@@ -1,4 +1,4 @@
-﻿namespace Pulse.Pages;
+﻿namespace Pulse.app.pages;
 
 public class MentalHealthPage : IPageAdapter
 {

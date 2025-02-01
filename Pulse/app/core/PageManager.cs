@@ -1,4 +1,4 @@
-﻿using Pulse.Pages;
+﻿using Pulse.app.pages;
 using Spectre.Console;
 
 namespace Pulse.core;

@@ -1,7 +1,7 @@
 ﻿using Pulse.core;
 using Spectre.Console;
 
-namespace Pulse.Pages;
+namespace Pulse.app.pages;
 
 public class HomePage : IPageAdapter
 {

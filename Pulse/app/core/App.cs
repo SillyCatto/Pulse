@@ -1,6 +1,6 @@
-﻿using Pulse.models;
+﻿using Pulse.app.pages;
+using Pulse.models;
 using Pulse.models.record;
-using Pulse.Pages;
 using Pulse.utils;
 using Spectre.Console;
 
