@@ -19,7 +19,7 @@ public class AddBMIRecord : IChoiceAdapter
         var bmiRecords = _page.GetDataModel().ToDict();
         if (bmiRecords.ContainsKey(today))
         {
-            _page.SetErrorMsg($"[magenta2_1]You already have a record for today {today}. Come back later. :sparkles:[/]");
+            _page.SetMsg($":slightly_smiling_face: [magenta2_1]You already have a record for today {today}. Come back later.[/]");
             _page.Run();
             return;
         }

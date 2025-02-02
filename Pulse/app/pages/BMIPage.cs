@@ -13,7 +13,7 @@ public class BMIPage : IPageAdapter
     private readonly PageManager _pageManager;
     private JSONModelHandler<BMIModel> _bmiModel;
     private readonly ChoiceManager _choiceManager;
-    private string? _errorMsg;
+    private string? _msg;
 
     public BMIPage(PageManager pageManager)
     {
@@ -83,12 +83,12 @@ public class BMIPage : IPageAdapter
         AnsiConsole.WriteLine();
         RecordTable();
         
-        if (!string.IsNullOrEmpty(_errorMsg))
+        if (!string.IsNullOrEmpty(_msg))
         {
             AnsiConsole.WriteLine();
-            AnsiConsole.MarkupLine($"{_errorMsg}");
+            AnsiConsole.MarkupLine($"{_msg}");
             AnsiConsole.WriteLine();
-            _errorMsg = null;
+            _msg = null;
         }
     }
 
@@ -99,9 +99,9 @@ public class BMIPage : IPageAdapter
         _choiceManager.ShowAndExecute();
     }
 
-    public void SetErrorMsg(string msg)
+    public void SetMsg(string msg)
     {
-        _errorMsg = msg;
+        _msg = msg;
     }
     
     public JSONModelHandler<BMIModel> GetDataModel() => _bmiModel;
