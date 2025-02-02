@@ -6,10 +6,12 @@ namespace Pulse.utils;
 public class JSONFileWriter : IFileWriter
 {
     private readonly string _filePath;
+    private readonly JSONFileReader _reader;
 
     public JSONFileWriter(string filePath)
     {
         _filePath = filePath;
+        _reader = new JSONFileReader(_filePath);
     }
     
     public void Write(Dictionary<string, List<string>> data)
@@ -31,12 +33,7 @@ public class JSONFileWriter : IFileWriter
 
     public void UpdateValue(string key, List<string> record)
     {
-        var data = new JSONFileReader(_filePath).Read();
-
-        if (data == null)
-        {
-            data = new Dictionary<string, List<string>>();
-        }
+        var data = _reader.Read() ?? new Dictionary<string, List<string>>();
         
         data[key] = record;
         Write(data);
