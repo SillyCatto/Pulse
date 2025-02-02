@@ -1,4 +1,6 @@
 ﻿using Pulse.app.models;
+using Pulse.app.pages.choices;
+using Pulse.app.pages.choices.BMIPageChoice;
 using Pulse.core;
 using Pulse.models;
 using Pulse.utils;
@@ -10,12 +12,23 @@ public class BMIPage : IPageAdapter
 {
     private readonly PageManager _pageManager;
     private JSONModelHandler<BMIModel> _bmiModel;
+    private readonly ChoiceManager _choiceManager;
     private string? _errorMsg;
 
     public BMIPage(PageManager pageManager)
     {
         _pageManager = pageManager;
         _bmiModel = new JSONModelHandler<BMIModel>(Constants.BMIDataPath);
+        _choiceManager = new ChoiceManager();
+        
+        RegisterChoices();
+    }
+
+    private void RegisterChoices()
+    {
+        _choiceManager.Add("Add", () => new AddBMIRecord(this));
+        _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
+        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 
     private void RecordTable()
@@ -83,37 +96,13 @@ public class BMIPage : IPageAdapter
     {
         View();
 
-        var choice = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .HighlightStyle(Style.Parse(Constants.ChoicePromptStyle))
-                .AddChoices("Back", "Exit")
-        );
-
-        if (choice.Equals("Back"))
-        {
-            _pageManager.Navigate("Home");
-        }
-        else
-        {
-            App.Exit();
-        }
-    }
-    
-    private static string GetVerdict(double bmi)
-    {
-        return bmi switch
-        {
-            < 18.5 => "Underweight",
-            < 25.0 => "Normal weight",
-            < 30.0 => "Pre-obesity",
-            < 35.0 => "Obesity class I",
-            < 40.0 => "Obesity class II",
-            _ => "Obesity class III"
-        };
+        _choiceManager.ShowAndExecute();
     }
 
     public void SetErrorMsg(string msg)
     {
         _errorMsg = msg;
     }
+    
+    public JSONModelHandler<BMIModel> GetDataModel() => _bmiModel;
 }

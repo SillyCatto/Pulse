@@ -13,14 +13,7 @@ public class App
     public App()
     {
         _pageManager = new PageManager();
-        
-        // register pages
-        _pageManager.RegisterPage("Home", () => new HomePage(_pageManager));
-        _pageManager.RegisterPage("BMI Calculator", () => new BMIPage(_pageManager));
-        _pageManager.RegisterPage("Healthy Habit Todos", () => new HabitTodoPage());
-        _pageManager.RegisterPage("Mental Health Tracker", () => new MentalHealthPage());
-        _pageManager.RegisterPage("Report", () => new ReportPage());
-        
+        RegisterAppPages(); 
     }
 
     public void Run()
@@ -28,6 +21,16 @@ public class App
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         //Test();
         _pageManager.Navigate("Home");
+    }
+
+    private void RegisterAppPages()
+    {
+        // register pages
+        _pageManager.RegisterPage("Home", () => new HomePage(_pageManager));
+        _pageManager.RegisterPage("BMI Calculator", () => new BMIPage(_pageManager));
+        _pageManager.RegisterPage("Healthy Habit Todos", () => new HabitTodoPage());
+        _pageManager.RegisterPage("Mental Health Tracker", () => new MentalHealthPage());
+        _pageManager.RegisterPage("Report", () => new ReportPage());
     }
 
     private void Test()
