@@ -30,13 +30,6 @@ public class App
         _pageManager.Navigate("Home");
     }
 
-    public static void Exit()
-    {
-        AnsiConsole.Clear();
-        AnsiConsole.MarkupLine("[bold green]Goodbye![/]");
-        Environment.Exit(0);
-    }
-
     private void Test()
     {
         // Dictionary<string, object> data = new Dictionary<string, object>

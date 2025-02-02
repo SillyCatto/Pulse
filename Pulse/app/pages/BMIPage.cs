@@ -10,6 +10,7 @@ public class BMIPage : IPageAdapter
 {
     private readonly PageManager _pageManager;
     private JSONModelHandler<BMIModel> _bmiModel;
+    private string? _errorMsg;
 
     public BMIPage(PageManager pageManager)
     {
@@ -68,6 +69,14 @@ public class BMIPage : IPageAdapter
         });
         AnsiConsole.WriteLine();
         RecordTable();
+        
+        if (!string.IsNullOrEmpty(_errorMsg))
+        {
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"{_errorMsg}");
+            AnsiConsole.WriteLine();
+            _errorMsg = null;
+        }
     }
 
     public void Run()
@@ -101,5 +110,10 @@ public class BMIPage : IPageAdapter
             < 40.0 => "Obesity class II",
             _ => "Obesity class III"
         };
+    }
+
+    public void SetErrorMsg(string msg)
+    {
+        _errorMsg = msg;
     }
 }
