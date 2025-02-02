@@ -24,11 +24,11 @@ public class AddBMIRecord : IChoiceAdapter
         }
         
         double weight = AnsiConsole.Prompt(
-            new TextPrompt<double>("Enter your [green]weight[/] (kg):")
+            new TextPrompt<double>("Enter your [bold mediumorchid1_1]weight[/] (kg):")
                 .PromptStyle("green")  // Makes user input green
                 .ValidationErrorMessage("[red]That's not a number.[/]") // Custom error for non-numeric input
                 .Validate(w => 
-                        w > 0 ? ValidationResult.Success() 
+                        w >= 0 ? ValidationResult.Success() 
                             : ValidationResult.Error("[red]Weight must be positive.[/]") // Custom error for invalid numbers
                 )
         );
