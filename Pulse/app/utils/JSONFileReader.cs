@@ -40,22 +40,30 @@ public class JSONFileReader : IFileReader
 
             foreach (var kvp in dict)
             {
+                var list = new List<string>();
                 if (kvp.Value.ValueKind == JsonValueKind.Array)
                 {
-                    var list = new List<string>();
                     foreach (var item in kvp.Value.EnumerateArray())
                     {
                         if (item.ValueKind == JsonValueKind.String)
                         {
                             list.Add(item.GetString()!);
                         }
+                        else
+                        {
+                            list.Add(item.ToString()); // convert other to string
+                        }
                     }
-                    result[kvp.Key] = list;
+                }
+                else if (kvp.Value.ValueKind == JsonValueKind.String)
+                {
+                    list.Add(kvp.Value.GetString()!);
                 }
                 else
                 {
-                    result[kvp.Key] = new List<string> { kvp.Value.GetString()! };
+                    list.Add(kvp.Value.ToString()); // handle unexpected types
                 }
+                result[kvp.Key] = list;
             }
 
             return result;
