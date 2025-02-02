@@ -24,7 +24,7 @@ public class BMIPage : IPageAdapter
         {
             var panelText = new Panel(
                 new Rows(
-                    new Markup("[dim]You don't have any records yet.[/]").Centered()
+                    new Markup("[grey54]You don't have any records yet.[/]").Centered()
                 ))
             {
                 Expand = true,
@@ -34,18 +34,26 @@ public class BMIPage : IPageAdapter
         }
         else
         {
-            var bmiRecordTable = new Table();
-            bmiRecordTable.AddColumn(new TableColumn("Date").Centered());
-            bmiRecordTable.AddColumn(new TableColumn("BMI").Centered());
-            bmiRecordTable.AddColumn(new TableColumn("Verdict").Centered());
+            var bmiRecordTable = new Table
+            {
+                Title = new TableTitle("RECORD", new Style(decoration: Decoration.Bold | Decoration.Underline)),
+                Border = TableBorder.Rounded,
+                Alignment = Justify.Center,
+                Width = 60
+            };
+            
+            bmiRecordTable.AddColumns(
+                new TableColumn("[green1]Date[/]").Centered(),
+                new TableColumn("[green1]BMI[/]").Centered(),
+                new TableColumn("[green1]Verdict[/]").Centered()
+            );
 
             foreach (var entry in bmiRecord)
             {
                 var record = entry.Value;
                 bmiRecordTable.AddRow(entry.Key, record[0], record[1]);
             }
-
-            bmiRecordTable.Expand();
+            
             AnsiConsole.Write(bmiRecordTable);
         }
     }
@@ -68,6 +76,7 @@ public class BMIPage : IPageAdapter
 
         var choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
+                .HighlightStyle(Style.Parse(Constants.ChoicePromptStyle))
                 .AddChoices("Back", "Exit")
         );
 

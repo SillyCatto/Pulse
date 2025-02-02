@@ -8,4 +8,6 @@ public class Constants
     public static readonly string MentalHealthDataPath = "data/mentalhealth.json";
     
     public static readonly string DateStringFormat = "yyyy-MM-dd";
+    
+    public static readonly string ChoicePromptStyle = "yellow bold underline";
 }

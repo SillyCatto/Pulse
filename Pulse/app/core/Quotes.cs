@@ -18,12 +18,13 @@ public static class Quotes
         "Your present circumstances don’t determine where you can go; they merely determine where you start. - Nido Qubein",
         "Self-care is not a luxury, it’s a necessity.",
         "Health is Wealth",
-        "A calm mind brings inner strength and self-confidence, so that’s very important for good health. - Dalai Lama",
-        "Happiness is not something ready-made. It comes from your own actions. - Dalai Lama",
         "Small steps in the right direction can turn out to be the biggest steps of your life.",
         "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
         "Do something today that your future self will thank you for.",
-        "Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change."
+        "Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.",
+        
+        "There are two blessings which many people waste: health and free time. - Sahih al-Bukhari:6412",
+        "Cleanliness is half of faith. - Sahih Muslim:223"
     };
     
     private static readonly Random random = new();

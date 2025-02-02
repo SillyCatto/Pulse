@@ -1,4 +1,5 @@
 ﻿using Pulse.core;
+using Pulse.utils;
 using Spectre.Console;
 
 namespace Pulse.app.pages;
@@ -49,10 +50,10 @@ public class HomePage : IPageAdapter
         
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine("[grey]Use ↑/↓ to navigate, Enter to select an option.[/]");
+        AnsiConsole.MarkupLine("[grey54]Use ↑/↓ to navigate, Enter to select an option.[/]");
         
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine("[yellow]Choose an option:[/]");
+        AnsiConsole.MarkupLine("[turquoise2]Choose an option:[/]");
     }
 
     public void Run()
@@ -64,6 +65,7 @@ public class HomePage : IPageAdapter
 
         string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
+                .HighlightStyle(Style.Parse(Constants.ChoicePromptStyle))
                 .AddChoices(choices)
         );
 
