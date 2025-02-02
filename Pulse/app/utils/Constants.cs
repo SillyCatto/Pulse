@@ -10,4 +10,5 @@ public class Constants
     public static readonly string DateStringFormat = "yyyy-MM-dd";
     
     public static readonly string ChoicePromptStyle = "yellow bold underline";
+    public static readonly string PromptInputStyle = "#00ffff";
 }
