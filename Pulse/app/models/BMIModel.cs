@@ -1,4 +1,6 @@
-﻿namespace Pulse.app.models;
+﻿using System.Globalization;
+
+namespace Pulse.app.models;
 
 public class BMIModel : IModelAdapter
 {
@@ -71,7 +73,7 @@ public class BMIModel : IModelAdapter
         throw new ArgumentException("BMI value must be a double or a List<string>.");
     }
     
-    public static string GetVerdict(double bmi)
+    private static string GetVerdict(double bmi)
     {
         return bmi switch
         {
@@ -82,6 +84,14 @@ public class BMIModel : IModelAdapter
             < 40.0 => "Obesity class II",
             _ => "Obesity class III"
         };
+    }
+
+    public static List<string> GetRecord(double weight, double height)
+    {
+        double bmi = weight / (height * height);
+        string verdict = GetVerdict(bmi);
+        
+        return new List<string> { bmi.ToString("F2", CultureInfo.InvariantCulture), verdict };
     }
 
     

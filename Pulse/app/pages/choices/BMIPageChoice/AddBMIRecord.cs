@@ -46,11 +46,8 @@ public class AddBMIRecord : IChoiceAdapter
                 )
         );
 
-        double bmi = weight / (height * height);
-        string verdict = BMIModel.GetVerdict(bmi);
-        
-        var newRecord = new List<string> { bmi.ToString("F2", CultureInfo.InvariantCulture), verdict };
         var bmiModel = _page.GetDataModel();
+        var newRecord = BMIModel.GetRecord(weight, height);
         bmiModel.AddRecord(today, newRecord);
         bmiModel.Save();
         
