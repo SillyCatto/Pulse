@@ -25,8 +25,7 @@ public class AddBMIRecord : IChoiceAdapter
             return;
         }
         
-        AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine($"[yellow]Adding record for today {today}...[/]");
+        _page.RefreshMsg($"[yellow]Adding record for today {today}...[/]");
         
         double weight = AnsiConsole.Prompt(
             new TextPrompt<double>("Enter your [bold mediumorchid1_1]weight[/] (kg):")

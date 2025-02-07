@@ -15,6 +15,8 @@ public class DeleteBMIRecord : IChoiceAdapter
     public void Exec()
     {
         var bmiRecords = _page.GetDataModel();
+        
+        _page.RefreshMsg("[yellow]Deleting record...[/]");
         string date = AskDateInput();
         
         if (!bmiRecords.ToDict().ContainsKey(date))

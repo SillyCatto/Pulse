@@ -96,13 +96,18 @@ public class BMIPage : IPageAdapter
     public void Run()
     {
         View();
-
         _choiceManager.ShowAndExecute();
     }
 
     public void SetMsg(string msg)
     {
         _msg = msg;
+    }
+
+    public void RefreshMsg(string msg)
+    {
+        SetMsg(msg);
+        View();
     }
     
     public JSONModelHandler<BMIModel> GetDataModel() => _bmiModel;
