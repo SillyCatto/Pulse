@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Pulse.app.models;
 using Pulse.utils;
 using Spectre.Console;
 
@@ -27,12 +28,33 @@ public class AddBMIRecord : IChoiceAdapter
         AnsiConsole.WriteLine();
         double weight = AnsiConsole.Prompt(
             new TextPrompt<double>("Enter your [bold mediumorchid1_1]weight[/] (kg):")
-                .PromptStyle(Constants.PromptInputStyle)  // Makes user input green
-                .ValidationErrorMessage("[red]That's not a number.[/]") // Custom error for non-numeric input
+                .PromptStyle(Constants.PromptInputStyle)
+                .ValidationErrorMessage("[red]That's not a number.[/]")
                 .Validate(w => 
                         w >= 0 ? ValidationResult.Success() 
-                            : ValidationResult.Error("[red]Weight must be positive.[/]") // Custom error for invalid numbers
+                            : ValidationResult.Error("[red]Weight must be greater than zero.[/]")
                 )
         );
+        
+        double height = AnsiConsole.Prompt(
+            new TextPrompt<double>("Enter your [bold mediumorchid1_1]height[/] (m):")
+                .PromptStyle(Constants.PromptInputStyle)
+                .ValidationErrorMessage("[red]That's not a number.[/]")
+                .Validate(w => 
+                    w >= 0 ? ValidationResult.Success() 
+                        : ValidationResult.Error("[red]Height must be greater than zero.[/]")
+                )
+        );
+
+        double bmi = weight / (height * height);
+        string verdict = BMIModel.GetVerdict(bmi);
+        
+        var newRecord = new List<string> { bmi.ToString("F2", CultureInfo.InvariantCulture), verdict };
+        var bmiModel = _page.GetDataModel();
+        bmiModel.AddRecord(today, newRecord);
+        bmiModel.Save();
+        
+        _page.SetMsg($":check_mark:  [green]BMI record added successfully for {today}[/]");
+        _page.Run();
     }
 }
