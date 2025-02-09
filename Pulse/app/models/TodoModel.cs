@@ -42,4 +42,9 @@ public class TodoModel : IModelAdapter
             ":cross_mark: Cancelled"
         ];
     }
+    
+    public void SetData(Dictionary<string, List<string>> newRecords)
+    {
+        _todoRecords = new Dictionary<string, List<string>>(newRecords);
+    }
 }

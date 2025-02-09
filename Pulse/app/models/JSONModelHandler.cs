@@ -65,5 +65,10 @@ public class JSONModelHandler<T> where T : IModelAdapter, new()
     {
         return _model;
     }
+    
+    public void SetData(Dictionary<string, List<string>> newRecords)
+    {
+        _model.SetData(newRecords);
+    }
 }
 

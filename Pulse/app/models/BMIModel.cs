@@ -68,6 +68,11 @@ public class BMIModel : IModelAdapter
         
         return new List<string> { bmi.ToString("F2", CultureInfo.InvariantCulture), verdict };
     }
+    
+    public void SetData(Dictionary<string, List<string>> newRecords)
+    {
+        _bmiRecords = new Dictionary<string, List<string>>(newRecords);
+    }
 
     
 }
