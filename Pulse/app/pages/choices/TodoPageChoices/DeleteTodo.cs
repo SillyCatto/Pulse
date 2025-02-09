@@ -22,15 +22,27 @@ public class DeleteTodo : IChoiceAdapter
                 .PromptStyle(Constants.PromptInputStyle)
                 .ValidationErrorMessage("[red]That's not a number.[/]")
         );
+        
+        var todoDict = todoRecords.ToDict();
 
-        if (!todoRecords.ToDict().ContainsKey(index.ToString()))
+        if (!todoDict.ContainsKey(index.ToString()))
         {
             _page.SetMsg($":cross_mark: [red]Task no. {index} doesn't exist[/]");
             _page.Run();
             return;
         }
         
-        todoRecords.RemoveRecord(index.ToString());
+        todoDict.Remove(index.ToString());
+
+        var newTodoDict = new Dictionary<string, List<string>>();
+        int newIndex = 1;
+        foreach (var entry in todoDict)
+        {
+            newTodoDict[newIndex.ToString()] = entry.Value;
+            newIndex++;
+        }
+        
+        todoRecords.SetData(newTodoDict);
         todoRecords.Save();
         _page.SetMsg($":check_mark:  [green]Task no. {index} deleted successfully![/]");
         _page.Run();

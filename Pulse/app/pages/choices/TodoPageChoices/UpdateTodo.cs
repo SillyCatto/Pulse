@@ -24,7 +24,8 @@ public class UpdateTodo : IChoiceAdapter
                 .ValidationErrorMessage("[red]That's not a number.[/]")
         );
 
-        if (!todoRecords.ToDict().ContainsKey(index.ToString()))
+        var todoDict = todoRecords.ToDict();
+        if (!todoDict.ContainsKey(index.ToString()))
         {
             _page.SetMsg($":cross_mark: [red]Task no. {index} doesn't exist[/]");
             _page.Run();
@@ -40,9 +41,10 @@ public class UpdateTodo : IChoiceAdapter
                 .AddChoices(TodoModel.GetAllStatus())
         );
         
-        var task = todoRecords.ToDict()[index.ToString()][0];
+        var task = todoDict[index.ToString()][0];
         todoRecords.Update(index.ToString(), [task, status]);
         todoRecords.Save();
+        
         _page.SetMsg($":check_mark:  [green]Task no. {index} updated successfully![/]");
         _page.Run();
     }
