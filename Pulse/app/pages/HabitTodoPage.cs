@@ -27,7 +27,7 @@ public class HabitTodoPage : IPageAdapter
     private void RegisterChoices()
     {
         _choiceManager.Add("Add Task", () => new AddTodo(this));
-        _choiceManager.Add("Update Task", () => new UpdateTodo(this));
+        _choiceManager.Add("Update Task Status", () => new UpdateTodo(this));
         _choiceManager.Add("Delete Task", () => new DeleteTodo(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
         _choiceManager.Add("Exit", () => new ChoiceExit());

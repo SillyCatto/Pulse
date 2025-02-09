@@ -21,7 +21,7 @@ public class DeleteBMIRecord : IChoiceAdapter
         
         if (!bmiRecords.ToDict().ContainsKey(date))
         {
-            _page.SetMsg(":cross_mark: [magenta2_1]That record doesn't exist[/]");
+            _page.SetMsg(":cross_mark: [red]That record doesn't exist[/]");
             _page.Run();
             return;
         }
@@ -35,7 +35,7 @@ public class DeleteBMIRecord : IChoiceAdapter
     private static string AskDateInput()
     {
         return AnsiConsole.Prompt(
-            new TextPrompt<string>("Enter the date of the record to [bold mediumorchid1_1]delete[/] (yyyy-MM-dd):")
+            new TextPrompt<string>("Enter the [bold mediumorchid1_1]date[/] of the record to [bold red]delete[/] (yyyy-MM-dd):")
                 .PromptStyle(Constants.PromptInputStyle)
                 .ValidationErrorMessage("[red]Wrong date format, try again: (yyyy-MM-dd)[/]")
                 .Validate(input =>
