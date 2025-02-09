@@ -38,6 +38,7 @@ public class TodoModel : IModelAdapter
         [
             ":memo: Planned",
             ":hourglass_not_done: InProgress",
+            ":pause_button: Paused",
             ":check_mark: Done",
             ":cross_mark: Cancelled"
         ];
