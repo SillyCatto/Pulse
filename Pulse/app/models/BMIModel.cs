@@ -11,34 +11,9 @@ public class BMIModel : IModelAdapter
         _bmiRecords = new Dictionary<string, List<string>>();
     }
 
-    public bool Validate()
-    {
-        foreach (var entry in _bmiRecords)
-        {
-            if (entry.Value is List<string> bmiRecord && bmiRecord.Count > 0)
-            {
-                if (double.TryParse(bmiRecord[0], out double bmiValue))
-                {
-                    if (bmiValue < 10 || bmiValue > 50)
-                        return false;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public Dictionary<string, List<string>> ToDict()
     {
-        var result = new Dictionary<string, List<string>>();
-        foreach (var entry in _bmiRecords)
-        {
-            result[entry.Key] = entry.Value;
-        }
-        return result;
+        return new Dictionary<string, List<string>>(_bmiRecords);
     }
 
     public void AddRecord(string date, List<string> value)
