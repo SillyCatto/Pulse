@@ -40,7 +40,7 @@ public class BMIPage : IPageAdapter
             var panelText = new Panel(
                 new Rows(
                     new Markup("[grey54]You don't have any records yet.[/]").Centered(),
-                    new Markup("[grey54]Get started by adding some records. :rocket:[/]").Centered()
+                    new Markup("[grey54]:rocket: Get started by adding some records.[/]").Centered()
                 ))
             {
                 Expand = true,
@@ -84,6 +84,7 @@ public class BMIPage : IPageAdapter
         });
         AnsiConsole.WriteLine();
         RecordTable();
+        AnsiConsole.WriteLine();
         
         if (!string.IsNullOrEmpty(_msg))
         {
