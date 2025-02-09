@@ -66,8 +66,15 @@ public class BMIPage : IPageAdapter
 
             foreach (var entry in bmiRecord)
             {
-                var record = entry.Value;
-                bmiRecordTable.AddRow(entry.Key, record[0], record[1]);
+                var date = entry.Key;
+                var bmi = entry.Value[0];
+                var verdict = entry.Value[1];
+
+                bmiRecordTable.AddRow(
+                    new Markup($"[bold fuchsia]{date}[/]"),
+                    new Markup($"{bmi}"),
+                    new Markup($"{verdict}")
+                );
             }
             
             AnsiConsole.Write(bmiRecordTable);
