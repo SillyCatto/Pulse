@@ -35,13 +35,12 @@ public class DeleteBMIRecord : IChoiceAdapter
     private static string AskDateInput()
     {
         return AnsiConsole.Prompt(
-            new TextPrompt<string>("Enter the [bold mediumorchid1_1]date[/] of the record to [bold red]delete[/] (yyyy-MM-dd):")
+            new TextPrompt<string>($"Enter the [bold mediumorchid1_1]date[/] of the record to [bold red]delete[/] ({Constants.DateStringFormat}):")
                 .PromptStyle(Constants.PromptInputStyle)
-                .ValidationErrorMessage("[red]Wrong date format, try again: (yyyy-MM-dd)[/]")
                 .Validate(input =>
-                    DateTime.TryParseExact(input, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _)
+                    DateTime.TryParseExact(input, Constants.DateStringFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out _)
                         ? ValidationResult.Success()
-                        : ValidationResult.Error("[red]Invalid date format. Use yyyy-MM-dd.[/]"))
+                        : ValidationResult.Error($"[red]Wrong date format. Use {Constants.DateStringFormat}.[/]"))
         );
     }
 }

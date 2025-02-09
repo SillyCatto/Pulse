@@ -15,7 +15,7 @@ public class AddBMIRecord : IChoiceAdapter
     }
     public void Exec()
     {
-        string today = DateTime.Now.ToString("yyyy-MM-dd");
+        string today = DateTime.Now.ToString(Constants.DateStringFormat);
 
         var bmiRecords = _page.GetDataModel().ToDict();
         if (bmiRecords.ContainsKey(today))
