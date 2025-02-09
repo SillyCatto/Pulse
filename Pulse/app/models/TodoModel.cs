@@ -11,21 +11,35 @@ public class TodoModel : IModelAdapter
 
     public Dictionary<string, List<string>> ToDict()
     {
-        throw new NotImplementedException();
+        return new Dictionary<string, List<string>>(_todoRecords);
     }
 
-    public void AddRecord(string key, List<string> value)
+    public void AddRecord(string _, List<string> value)
     {
-        throw new NotImplementedException();
+        string newKey = (_todoRecords.Count + 1).ToString();
+        _todoRecords[newKey] = value;
     }
 
     public bool RemoveRecord(string key)
     {
-        throw new NotImplementedException();
+        return _todoRecords.Remove(key);
     }
 
     public bool Update(string key, List<string> newValue)
     {
-        throw new NotImplementedException();
+        if (!_todoRecords.ContainsKey(key)) return false;
+        _todoRecords[key] = newValue;
+        return true;
+    }
+
+    public static List<string> GetAllStatus()
+    {
+        return
+        [
+            ":memo: Planned",
+            ":hourglass_not_done: InProgress",
+            ":check_mark: Done",
+            ":cross_mark: Cancelled"
+        ];
     }
 }
