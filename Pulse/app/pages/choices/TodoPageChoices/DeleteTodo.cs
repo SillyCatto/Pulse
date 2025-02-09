@@ -11,6 +11,6 @@ public class DeleteTodo : IChoiceAdapter
 
     public void Exec()
     {
-        throw new NotImplementedException();
+        
     }
 }

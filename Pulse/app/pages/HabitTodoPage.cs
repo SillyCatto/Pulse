@@ -1,5 +1,6 @@
 ﻿using Pulse.app.models;
 using Pulse.app.pages.choices;
+using Pulse.app.pages.choices.TodoPageChoices;
 using Pulse.core;
 using Pulse.models;
 using Pulse.utils;
@@ -25,9 +26,9 @@ public class HabitTodoPage : IPageAdapter
 
     private void RegisterChoices()
     {
-        // _choiceManager.Add("Add", () => new AddBMIRecord(this));
-        // _choiceManager.Add("Update", () => new AddBMIRecord(this));
-        // _choiceManager.Add("Delete", () => new DeleteBMIRecord(this));
+        _choiceManager.Add("Add Task", () => new AddTodo(this));
+        _choiceManager.Add("Update Task", () => new UpdateTodo(this));
+        _choiceManager.Add("Delete Task", () => new DeleteTodo(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
         _choiceManager.Add("Exit", () => new ChoiceExit());
     }
@@ -39,8 +40,8 @@ public class HabitTodoPage : IPageAdapter
         {
             var panelText = new Panel(
                 new Rows(
-                    new Markup("[grey54]You don't have any records yet.[/]").Centered(),
-                    new Markup("[grey54]:rocket: Get started by adding some records.[/]").Centered()
+                    new Markup("[grey54]You don't have any tasks yet.[/]").Centered(),
+                    new Markup("[grey54]:rocket: Get started by adding some tasks.[/]").Centered()
                 ))
             {
                 Expand = true,
@@ -59,16 +60,23 @@ public class HabitTodoPage : IPageAdapter
             
             todoRecordTable.AddColumns(
                 new TableColumn("[green1]Index[/]").Centered(),
-                new TableColumn("[green1]Tasks[/]").Centered(),
-                new TableColumn("[green1]Status[/]").Centered()
+                new TableColumn("[green1]Tasks[/]"),
+                new TableColumn("[green1]Status[/]")
             );
 
             foreach (var entry in todoRecords)
             {
-                var record = entry.Value;
-                todoRecordTable.AddRow(entry.Key, record[0], record[1]);
+                var index = entry.Key;
+                var task = entry.Value[0];
+                var status = entry.Value[1];
+
+                todoRecordTable.AddRow(
+                    new Markup($"[bold fuchsia]{index}[/]"),
+                    new Markup($"{task}"),
+                    new Markup($"{status}")
+                );
             }
-            
+
             AnsiConsole.Write(todoRecordTable);
         }
     }
@@ -87,7 +95,6 @@ public class HabitTodoPage : IPageAdapter
         
         if (!string.IsNullOrEmpty(_msg))
         {
-            AnsiConsole.WriteLine();
             AnsiConsole.MarkupLine($"{_msg}");
             AnsiConsole.WriteLine();
             _msg = null;

@@ -14,10 +14,9 @@ public class TodoModel : IModelAdapter
         return new Dictionary<string, List<string>>(_todoRecords);
     }
 
-    public void AddRecord(string _, List<string> value)
+    public void AddRecord(string index, List<string> value)
     {
-        string newKey = (_todoRecords.Count + 1).ToString();
-        _todoRecords[newKey] = value;
+        _todoRecords[index] = value;
     }
 
     public bool RemoveRecord(string key)
@@ -38,8 +37,8 @@ public class TodoModel : IModelAdapter
         [
             ":memo: Planned",
             ":hourglass_not_done: InProgress",
-            ":pause_button: Paused",
-            ":check_mark: Done",
+            ":pause_button:  Paused",
+            ":check_mark:  Done",
             ":cross_mark: Cancelled"
         ];
     }

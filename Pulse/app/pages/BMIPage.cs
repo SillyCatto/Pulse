@@ -39,8 +39,8 @@ public class BMIPage : IPageAdapter
         {
             var panelText = new Panel(
                 new Rows(
-                    new Markup("[grey54]You don't have any records yet.[/]").Centered(),
-                    new Markup("[grey54]:rocket: Get started by adding some records.[/]").Centered()
+                    new Markup("[grey54]You don't have any bmi records yet.[/]").Centered(),
+                    new Markup("[grey54]:rocket: Get started by adding.[/]").Centered()
                 ))
             {
                 Expand = true,
