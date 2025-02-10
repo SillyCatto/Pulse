@@ -1,6 +1,6 @@
 ﻿namespace Pulse.app.pages;
 
-public class MentalHealthPage : IPageAdapter
+public class MoodTracker : IPageAdapter
 {
     public void View()
     {

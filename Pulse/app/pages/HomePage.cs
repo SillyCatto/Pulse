@@ -23,7 +23,7 @@ public class HomePage : IPageAdapter
         _choiceManager.Add("Home", () => new ChoiceNavigatePage(_pageManager, "Home"));
         _choiceManager.Add("BMI Calculator", () => new ChoiceNavigatePage(_pageManager, "BMI Calculator"));
         _choiceManager.Add("Healthy Habit Todos", () => new ChoiceNavigatePage(_pageManager, "Healthy Habit Todos"));
-        _choiceManager.Add("Mental Health Tracker", () => new ChoiceNavigatePage(_pageManager, "Mental Health Tracker"));
+        _choiceManager.Add("Mood Tracker", () => new ChoiceNavigatePage(_pageManager, "Mood Tracker"));
         _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 

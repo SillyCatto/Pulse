@@ -29,7 +29,7 @@ public class App
         _pageManager.RegisterPage("Home", () => new HomePage(_pageManager));
         _pageManager.RegisterPage("BMI Calculator", () => new BMIPage(_pageManager));
         _pageManager.RegisterPage("Healthy Habit Todos", () => new HabitTodoPage(_pageManager));
-        _pageManager.RegisterPage("Mental Health Tracker", () => new MentalHealthPage());
+        _pageManager.RegisterPage("Mood Tracker", () => new MoodTracker());
         _pageManager.RegisterPage("Report", () => new ReportPage());
     }
 

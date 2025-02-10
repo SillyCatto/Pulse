@@ -7,7 +7,7 @@ public class ChoiceExit : IChoiceAdapter
     public void Exec()
     {
         AnsiConsole.Clear();
-        AnsiConsole.MarkupLine("[bold green]Goodbye![/]");
+        AnsiConsole.MarkupLine(":grinning_face_with_smiling_eyes: [bold green]Goodbye![/]");
         Environment.Exit(0);
     }
 }
