@@ -5,6 +5,7 @@ public class Constants
     public static readonly string BMIDataPath = "data/bmi.json";
     public static readonly string HabitTodoPath = "data/todo.json";
     public static readonly string MoodDataPath = "data/mood.json";
+    public static readonly string ExerciseDataPath = "data/exercise.json";
     
     public static readonly string DateStringFormat = "yyyy-MM-dd";
     

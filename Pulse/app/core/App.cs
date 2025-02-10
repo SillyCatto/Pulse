@@ -30,7 +30,7 @@ public class App
         _pageManager.RegisterPage("BMI Calculator", () => new BMIPage(_pageManager));
         _pageManager.RegisterPage("Healthy Habit Todos", () => new HabitTodoPage(_pageManager));
         _pageManager.RegisterPage("Mood Tracker", () => new MoodTracker(_pageManager));
-        _pageManager.RegisterPage("Report", () => new ReportPage());
+        _pageManager.RegisterPage("Exercise Timer", () => new ExerciseTimerPage(_pageManager));
     }
 
     private void Test()
