@@ -11,6 +11,7 @@ public class StartTimer : IChoiceAdapter
     {
         _page = page;
     }
+    
     public async void Exec()
     {
         _page.RefreshMsg(":fire: [yellow]Let's start the grind...[/]");
@@ -31,37 +32,43 @@ public class StartTimer : IChoiceAdapter
                 .ValidationErrorMessage("[red]That's not a number.[/]")
         );
     
-        if (!AnsiConsole.Confirm($"Start {minutes} minute timer for {exercise}?"))
+        AnsiConsole.WriteLine();
+        if (!AnsiConsole.Confirm($"Start [bold mediumorchid1_1]{minutes} minute[/] timer for [bold mediumorchid1_1]{exercise}[/]?"))
         {
-            _page.SetMsg("[magenta2_1]Timer cancelled.[/]");
+            _page.SetMsg(":cross_mark:  [magenta2_1]Timer cancelled.[/]");
             _page.Run();
         }
     
         AnsiConsole.Clear();
         int elapsedSeconds = StartExerciseTimer(exercise, minutes).GetAwaiter().GetResult();
         
-        double elapsedMinutes = elapsedSeconds / 60.0;  // Convert to minutes
-        string formattedTime = $"{elapsedSeconds / 60:D2}:{elapsedSeconds % 60:D2}";
-    
         if (elapsedSeconds < minutes * 60)
         {
-            _page.SetMsg("[red]Timer cancelled midway.[/]");
+            double elapsedMinutes = elapsedSeconds / 60.0;
+            string formattedTime = $"{elapsedSeconds / 60:D2}:{elapsedSeconds % 60:D2}";
+            
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine(":cross_mark:  [red]Timer cancelled.[/]");
+            AnsiConsole.MarkupLine($"[green]{exercise} done for {elapsedMinutes:F2} minutes![/]");
+
+            if (AnsiConsole.Confirm($"Save record: [bold magenta2_1]{exercise}[/] - [bold cyan]{formattedTime}[/]?"))
+            {
+                SaveRecord(exercise, formattedTime);
+                _page.SetMsg(":check_mark:  [green]Record saved![/]");
+            }
+            else
+            {
+                _page.SetMsg($":cross_mark:  [yellow]Record discarded: [/][deepskyblue1]{exercise} for {elapsedMinutes:F2} minutes[/]");
+            }
         }
         else
         {
             Console.Beep();
-            _page.SetMsg($"[green]{exercise} done for {elapsedMinutes:F2} minutes![/]");
         }
-    
-        if (AnsiConsole.Confirm($"Save record for [bold]{exercise}[/] - [cyan]{formattedTime}[/]?"))
-        {
-            SaveRecord(exercise, formattedTime);
-            _page.SetMsg($":check_mark: [green]Record saved![/]");
-        }
-    
+
         _page.Run();
     }
-
+    
     private async Task<int> StartExerciseTimer(string exercise, int minutes)
     {
         int totalSeconds = minutes * 60;
@@ -71,18 +78,20 @@ public class StartTimer : IChoiceAdapter
     
         using (var cts = new CancellationTokenSource())
         {
-            // Start listening for pause/stop keys
             var inputTask = Task.Run(() =>
             {
                 while (!isStopped)
                 {
-                    var key = Console.ReadKey(true).Key;
-                    if (key == ConsoleKey.P)
-                        isPaused = !isPaused;
-                    else if (key == ConsoleKey.Escape)
+                    if (Console.KeyAvailable) // Only read if key is pressed
                     {
-                        isStopped = true;
-                        cts.Cancel();
+                        var key = Console.ReadKey(true).Key;
+                        if (key == ConsoleKey.P)
+                            isPaused = !isPaused;
+                        else if (key == ConsoleKey.Escape)
+                        {
+                            isStopped = true;
+                            cts.Cancel();
+                        }
                     }
                 }
             });
@@ -100,47 +109,57 @@ public class StartTimer : IChoiceAdapter
                                 int secondsLeft = (totalSeconds - elapsedSeconds) % 60;
                                 int progressPercent = (elapsedSeconds * 100) / totalSeconds;
     
-                                var timerText = new Markup($"[bold yellow]{exercise} Timer:[/] [bold cyan]{minutesLeft:D2}:{secondsLeft:D2}[/]");
+                                var exerciseName = new Markup($"[green1]{exercise}[/]");
+                                var timer = new Markup($"[bold black on turquoise2] {minutesLeft:D2}:{secondsLeft:D2} [/]");
                                 string progressBar = $"[{new string('█', (progressPercent * 20) / 100)}{new string('░', 20 - (progressPercent * 20) / 100)}] {progressPercent}%";
                                 var instructions = new Markup("Press [bold yellow]P[/] to pause, [bold red]Esc[/] to cancel");
     
                                 var layout = new Rows(
-                                    Align.Center(timerText),
+                                    Align.Center(new Markup("\n")),
+                                    Align.Center(exerciseName),
+                                    Align.Center(new Markup("\n")),
+                                    Align.Center(timer),
                                     Align.Center(new Markup("\n")),
                                     Align.Center(new Markup(Markup.Escape(progressBar))),
                                     Align.Center(new Markup("\n")),
                                     Align.Center(instructions)
                                 );
-                                ctx.UpdateTarget(new Panel(layout).Expand());
+                                ctx.UpdateTarget(new Panel(layout)
+                                    .Expand()
+                                    .Border(BoxBorder.Double)
+                                    .Header("[bold darkorange] TIMER [/]", Justify.Center)
+                                );
     
                                 await Task.Delay(1000, cts.Token);
                                 elapsedSeconds++;
                             }
                         }
     
-                        // Ensure final state update
-                        if (!isStopped)
-                        {
-                            var doneText = Align.Center(new Markup("[bold green]Time's up! Well done![/]"));
-                            ctx.UpdateTarget(new Panel(doneText).Expand());
-                            Console.Beep();
-                        }
+                        isStopped = true; // Ensure timer stops
                     });
     
+                // timer expired
+                if (elapsedSeconds >= totalSeconds)
+                {
+                    Console.Beep();
+                    string formattedTime = $"{minutes:D2}:00";
+                    SaveRecord(exercise, formattedTime);
+                    _page.SetMsg(":fire: [bold lime]Time's up! Well done![/]");
+                }
             }
             catch (TaskCanceledException)
             {
-                // Timer was cancelled
+                // timer cancelled
             }
             finally
             {
-                // Stop listening for key presses when timer ends
                 isStopped = true;
-                await inputTask;
+                cts.Cancel();
+                await inputTask; // Ensure input thread exits
             }
         }
     
-        return elapsedSeconds; // Return actual elapsed time
+        return elapsedSeconds;
     }
     
     private void SaveRecord(string exercise, string time)
