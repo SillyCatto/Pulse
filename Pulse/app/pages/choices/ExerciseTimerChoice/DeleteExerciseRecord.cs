@@ -33,17 +33,24 @@ public class DeleteExerciseRecord : IChoiceAdapter
         
         exerciseDict.Remove(index.ToString());
 
-        var newTodoDict = new Dictionary<string, List<string>>();
-        int newIndex = 1;
-        foreach (var entry in exerciseDict)
-        {
-            newTodoDict[newIndex.ToString()] = entry.Value;
-            newIndex++;
-        }
-        
-        exerciseRecords.SetData(newTodoDict);
+        var updatedDict = UpdateRecordIndex(exerciseDict);
+        exerciseRecords.SetData(updatedDict);
         exerciseRecords.Save();
+        
         _page.SetMsg($":check_mark:  [green]Record no. {index} deleted successfully![/]");
         _page.Run();
+    }
+    
+    private Dictionary<string, List<string>> UpdateRecordIndex(Dictionary<string, List<string>> prevRecords)
+    {
+        var updatedRecords = new Dictionary<string, List<string>>();
+        int newIndex = 1;
+        foreach (var entry in prevRecords)
+        {
+            updatedRecords[newIndex.ToString()] = entry.Value;
+            newIndex++;
+        }
+
+        return updatedRecords;
     }
 }

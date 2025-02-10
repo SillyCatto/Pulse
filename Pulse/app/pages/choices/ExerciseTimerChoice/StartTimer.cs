@@ -12,7 +12,7 @@ public class StartTimer : IChoiceAdapter
         _page = page;
     }
     
-    public async void Exec()
+    public void Exec()
     {
         _page.RefreshMsg(":fire: [yellow]Let's start the grind...[/]");
     
@@ -35,7 +35,7 @@ public class StartTimer : IChoiceAdapter
         AnsiConsole.WriteLine();
         if (!AnsiConsole.Confirm($"Start [bold mediumorchid1_1]{minutes} minute[/] timer for [bold mediumorchid1_1]{exercise}[/]?"))
         {
-            _page.SetMsg(":cross_mark:  [magenta2_1]Timer cancelled.[/]");
+            _page.SetMsg(":cross_mark: [magenta2_1]Timer cancelled.[/]");
             _page.Run();
         }
     
@@ -48,8 +48,9 @@ public class StartTimer : IChoiceAdapter
             string formattedTime = $"{elapsedSeconds / 60:D2}:{elapsedSeconds % 60:D2}";
             
             AnsiConsole.WriteLine();
-            AnsiConsole.MarkupLine(":cross_mark:  [red]Timer cancelled.[/]");
+            AnsiConsole.MarkupLine(":cross_mark: [red]Timer cancelled.[/]");
             AnsiConsole.MarkupLine($"[green]{exercise} done for {elapsedMinutes:F2} minutes![/]");
+            AnsiConsole.WriteLine();
 
             if (AnsiConsole.Confirm($"Save record: [bold magenta2_1]{exercise}[/] - [bold cyan]{formattedTime}[/]?"))
             {
@@ -58,12 +59,8 @@ public class StartTimer : IChoiceAdapter
             }
             else
             {
-                _page.SetMsg($":cross_mark:  [yellow]Record discarded: [/][deepskyblue1]{exercise} for {elapsedMinutes:F2} minutes[/]");
+                _page.SetMsg($":cross_mark: [yellow]Record discarded: [/][deepskyblue1]{exercise} for {elapsedMinutes:F2} minutes[/]");
             }
-        }
-        else
-        {
-            Console.Beep();
         }
 
         _page.Run();
@@ -135,7 +132,7 @@ public class StartTimer : IChoiceAdapter
                             }
                         }
     
-                        isStopped = true; // Ensure timer stops
+                        isStopped = true;
                     });
     
                 // timer expired

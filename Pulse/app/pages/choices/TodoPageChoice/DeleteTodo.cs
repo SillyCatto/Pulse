@@ -34,18 +34,25 @@ public class DeleteTodo : IChoiceAdapter
         
         todoDict.Remove(index.ToString());
 
-        var newTodoDict = new Dictionary<string, List<string>>();
-        int newIndex = 1;
-        foreach (var entry in todoDict)
-        {
-            newTodoDict[newIndex.ToString()] = entry.Value;
-            newIndex++;
-        }
-        
-        todoRecords.SetData(newTodoDict);
+        var updatedDict = UpdateRecordIndex(todoDict);
+        todoRecords.SetData(updatedDict);
         todoRecords.Save();
+        
         _page.SetMsg($":check_mark:  [green]Task no. {index} deleted successfully![/]");
         _page.Run();
         
+    }
+
+    private Dictionary<string, List<string>> UpdateRecordIndex(Dictionary<string, List<string>> prevRecords)
+    {
+        var updatedRecords = new Dictionary<string, List<string>>();
+        int newIndex = 1;
+        foreach (var entry in prevRecords)
+        {
+            updatedRecords[newIndex.ToString()] = entry.Value;
+            newIndex++;
+        }
+
+        return updatedRecords;
     }
 }

@@ -39,12 +39,19 @@ public class AddTodo : IChoiceAdapter
                 .HighlightStyle(Style.Parse("bold #00ffff"))
                 .AddChoices(TodoModel.GetAllStatus())
         );
-
-        var todoModel = _page.GetDataModel();
-        todoModel.AddRecord(nextTaskIndex.ToString(), [task, status]);
-        todoModel.Save();
+        
+        SaveRecord(task, status);
         
         _page.SetMsg($":check_mark:  [green]Task no. {nextTaskIndex} added successfully.[/]");
         _page.Run();
+    }
+    
+    private void SaveRecord(string task, string status)
+    {
+        var todoModel = _page.GetDataModel();
+        var records = todoModel.ToDict();
+        string newIndex = (records.Count + 1).ToString();
+        todoModel.AddRecord(newIndex, [task, status]);
+        todoModel.Save();
     }
 }

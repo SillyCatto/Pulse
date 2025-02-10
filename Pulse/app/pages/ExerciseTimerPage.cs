@@ -94,7 +94,6 @@ public class ExerciseTimerPage : IPageAdapter
         
         if (!string.IsNullOrEmpty(_msg))
         {
-            AnsiConsole.WriteLine();
             AnsiConsole.MarkupLine($"{_msg}");
             AnsiConsole.WriteLine();
             _msg = null;
