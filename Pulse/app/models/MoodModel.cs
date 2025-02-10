@@ -35,11 +35,17 @@ public class MoodModel : IModelAdapter
     {
         return
         [
-            ":memo: Planned",
-            ":hourglass_not_done: InProgress",
-            ":pause_button:  Paused",
-            ":check_mark:  Done",
-            ":cross_mark: Cancelled"
+            ":neutral_face: Neutral",
+            ":grinning_face_with_smiling_eyes: Happy",
+            ":disappointed_face: Sad",
+            ":crying_face: Depressed",
+            ":anxious_face_with_sweat: Anxious",
+            ":fearful_face: Scared",
+            ":partying_face: Excited",
+            ":relieved_face: Relaxed",
+            ":angry_face: Angry",
+            ":pensive_face: Stressed",
+            ":sleeping_face: Tired"
         ];
     }
     

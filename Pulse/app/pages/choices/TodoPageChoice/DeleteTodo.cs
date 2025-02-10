@@ -1,7 +1,7 @@
 ﻿using Pulse.utils;
 using Spectre.Console;
 
-namespace Pulse.app.pages.choices.TodoPageChoices;
+namespace Pulse.app.pages.choices.TodoPageChoice;
 
 public class DeleteTodo : IChoiceAdapter
 {

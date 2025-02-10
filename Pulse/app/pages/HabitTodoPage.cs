@@ -1,6 +1,6 @@
 ﻿using Pulse.app.models;
 using Pulse.app.pages.choices;
-using Pulse.app.pages.choices.TodoPageChoices;
+using Pulse.app.pages.choices.TodoPageChoice;
 using Pulse.core;
 using Pulse.models;
 using Pulse.utils;

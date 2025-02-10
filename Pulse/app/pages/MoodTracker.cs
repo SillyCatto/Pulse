@@ -1,5 +1,6 @@
 ﻿using Pulse.app.models;
 using Pulse.app.pages.choices;
+using Pulse.app.pages.choices.MoodPageChoice;
 using Pulse.core;
 using Pulse.models;
 using Pulse.utils;
@@ -25,8 +26,8 @@ public class MoodTracker : IPageAdapter
 
     private void RegisterChoices()
     {
-        // _choiceManager.Add("Add", () => new AddBMIRecord(this));
-        // _choiceManager.Add("Delete", () => new DeleteBMIRecord(this));
+        _choiceManager.Add("Add", () => new AddMoodRecord(this));
+        _choiceManager.Add("Delete", () => new DeleteMoodRecord(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
         _choiceManager.Add("Exit", () => new ChoiceExit());
     }
