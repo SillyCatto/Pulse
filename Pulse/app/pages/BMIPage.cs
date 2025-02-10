@@ -29,7 +29,6 @@ public class BMIPage : IPageAdapter
         _choiceManager.Add("Add", () => new AddBMIRecord(this));
         _choiceManager.Add("Delete", () => new DeleteBMIRecord(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
-        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 
     private void RecordTable()

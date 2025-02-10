@@ -29,7 +29,6 @@ public class ExerciseTimerPage : IPageAdapter
         _choiceManager.Add("Start Timer", () => new StartTimer(this));
         _choiceManager.Add("Delete", () => new DeleteExerciseRecord(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
-        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 
     private void RecordTable()

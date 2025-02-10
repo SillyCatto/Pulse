@@ -33,6 +33,13 @@ public class App
         _pageManager.RegisterPage("Exercise Timer", () => new ExerciseTimerPage(_pageManager));
     }
 
+    public static void Exit()
+    {
+        AnsiConsole.Clear();
+        AnsiConsole.MarkupLine(":grinning_face_with_smiling_eyes: [bold green]Goodbye![/]");
+        Environment.Exit(0);
+    }
+
     private void Test()
     {
         // Dictionary<string, object> data = new Dictionary<string, object>

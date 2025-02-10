@@ -29,7 +29,6 @@ public class MoodTracker : IPageAdapter
         _choiceManager.Add("Add", () => new AddMoodRecord(this));
         _choiceManager.Add("Delete", () => new DeleteMoodRecord(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
-        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 
     private void RecordTable()

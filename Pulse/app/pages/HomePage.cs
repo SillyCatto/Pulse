@@ -8,24 +8,10 @@ namespace Pulse.app.pages;
 public class HomePage : IPageAdapter
 {
     private readonly PageManager _pageManager;
-    private readonly ChoiceManager _choiceManager;
 
     public HomePage(PageManager pageManager)
     {
         _pageManager = pageManager;
-        _choiceManager = new ChoiceManager();
-        
-        RegisterChoices();
-    }
-    
-    private void RegisterChoices()
-    {
-        _choiceManager.Add("Home", () => new ChoiceNavigatePage(_pageManager, "Home"));
-        _choiceManager.Add("BMI Calculator", () => new ChoiceNavigatePage(_pageManager, "BMI Calculator"));
-        _choiceManager.Add("Healthy Habit Todos", () => new ChoiceNavigatePage(_pageManager, "Healthy Habit Todos"));
-        _choiceManager.Add("Mood Tracker", () => new ChoiceNavigatePage(_pageManager, "Mood Tracker"));
-        _choiceManager.Add("Exercise Timer", () => new ChoiceNavigatePage(_pageManager, "Exercise Timer"));
-        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
 
     private void DrawTitle()
@@ -75,6 +61,16 @@ public class HomePage : IPageAdapter
     {
         View();
 
-        _choiceManager.ShowAndExecute();
+        // later add: .Where(name => name != "Home") here to remove "Home"
+        var choices = _pageManager.GetPageNames().Append("Exit").ToList();
+
+        string choice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .HighlightStyle(Style.Parse(Constants.ChoicePromptStyle))
+                .AddChoices(choices)
+        );
+        
+        if (choice.Equals("Exit")) App.Exit();
+        _pageManager.Navigate(choice);
     }
 }

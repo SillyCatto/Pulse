@@ -30,7 +30,6 @@ public class HabitTodoPage : IPageAdapter
         _choiceManager.Add("Update Task Status", () => new UpdateTodo(this));
         _choiceManager.Add("Delete Task", () => new DeleteTodo(this));
         _choiceManager.Add("Back", () => new ChoiceBackToHome(_pageManager));
-        _choiceManager.Add("Exit", () => new ChoiceExit());
     }
     
     private void RecordTable()
