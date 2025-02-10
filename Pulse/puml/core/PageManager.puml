@@ -1,0 +1,7 @@
+@startuml
+class PageManager {
+    + RegisterPage(pageName:string, pageCreator:Func<IPageAdapter>) : void
+    + Navigate(pageName:string) : void
+    + GetPageNames() : IEnumerable<string>
+}
+@enduml

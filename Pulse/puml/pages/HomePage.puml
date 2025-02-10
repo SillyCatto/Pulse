@@ -1,0 +1,8 @@
+@startuml
+class HomePage {
+    + HomePage(pageManager:PageManager)
+    + View() : void
+    + Run() : void
+}
+IPageAdapter <|-- HomePage
+@enduml

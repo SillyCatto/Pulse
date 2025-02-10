@@ -1,0 +1,7 @@
+@startuml
+class DeleteBMIRecord {
+    + DeleteBMIRecord(page:BMIPage)
+    + Exec() : void
+}
+IChoiceAdapter <|-- DeleteBMIRecord
+@enduml

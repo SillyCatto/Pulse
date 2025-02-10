@@ -1,0 +1,11 @@
+@startuml
+class Constants {
+    + {static} <<readonly>> BMIDataPath : string = "data/bmi.json"
+    + {static} <<readonly>> HabitTodoPath : string = "data/todo.json"
+    + {static} <<readonly>> MoodDataPath : string = "data/mood.json"
+    + {static} <<readonly>> ExerciseDataPath : string = "data/exercise.json"
+    + {static} <<readonly>> DateStringFormat : string = "yyyy-MM-dd"
+    + {static} <<readonly>> ChoicePromptStyle : string = "yellow bold underline"
+    + {static} <<readonly>> PromptInputStyle : string = "#00ffff"
+}
+@enduml

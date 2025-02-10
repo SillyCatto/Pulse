@@ -1,0 +1,7 @@
+@startuml
+class AddBMIRecord {
+    + AddBMIRecord(page:BMIPage)
+    + Exec() : void
+}
+IChoiceAdapter <|-- AddBMIRecord
+@enduml

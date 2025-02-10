@@ -1,0 +1,7 @@
+@startuml
+class DeleteExerciseRecord {
+    + DeleteExerciseRecord(page:ExerciseTimerPage)
+    + Exec() : void
+}
+IChoiceAdapter <|-- DeleteExerciseRecord
+@enduml

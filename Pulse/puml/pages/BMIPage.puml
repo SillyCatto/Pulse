@@ -1,0 +1,11 @@
+@startuml
+class BMIPage {
+    + BMIPage(pageManager:PageManager)
+    + View() : void
+    + Run() : void
+    + SetMsg(msg:string) : void
+    + RefreshMsg(msg:string) : void
+    + GetDataModel() : JSONModelHandler<BMIModel>
+}
+IPageAdapter <|-- BMIPage
+@enduml

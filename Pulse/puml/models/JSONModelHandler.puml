@@ -1,0 +1,13 @@
+@startuml
+class "JSONModelHandler`1"<T> {
+    + JSONModelHandler(filePath:string)
+    + Load() : void
+    + Save() : void
+    + AddRecord(key:string, value:List<string>) : void
+    + RemoveRecord(key:string) : bool
+    + Update(key:string, newValue:List<string>) : bool
+    + ToDict() : Dictionary<string, List<string>>
+    + AsModel() : T
+    + SetData(newRecords:Dictionary<string, List<string>>) : void
+}
+@enduml

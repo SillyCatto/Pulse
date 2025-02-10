@@ -1,0 +1,5 @@
+@startuml
+interface IChoiceAdapter {
+    Exec() : void
+}
+@enduml

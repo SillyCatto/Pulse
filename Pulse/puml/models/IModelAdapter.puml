@@ -1,0 +1,9 @@
+@startuml
+interface IModelAdapter {
+    ToDict() : Dictionary<string, List<string>>
+    AddRecord(key:string, value:List<string>) : void
+    RemoveRecord(key:string) : bool
+    Update(key:string, newValue:List<string>) : bool
+    SetData(newRecords:Dictionary<string, List<string>>) : void
+}
+@enduml

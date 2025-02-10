@@ -1,0 +1,7 @@
+@startuml
+class AddMoodRecord {
+    + AddMoodRecord(page:MoodTracker)
+    + Exec() : void
+}
+IChoiceAdapter <|-- AddMoodRecord
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class HabitTodoPage {
+    + HabitTodoPage(pageManager:PageManager)
+    + View() : void
+    + Run() : void
+    + SetMsg(msg:string) : void
+    + RefreshMsg(msg:string) : void
+    + GetDataModel() : JSONModelHandler<TodoModel>
+}
+IPageAdapter <|-- HabitTodoPage
+@enduml

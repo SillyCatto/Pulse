@@ -1,0 +1,12 @@
+@startuml
+class BMIModel {
+    + BMIModel()
+    + ToDict() : Dictionary<string, List<string>>
+    + AddRecord(date:string, value:List<string>) : void
+    + RemoveRecord(date:string) : bool
+    + Update(date:string, newValue:List<string>) : bool
+    + {static} GetRecord(weight:double, height:double) : List<string>
+    + SetData(newRecords:Dictionary<string, List<string>>) : void
+}
+IModelAdapter <|-- BMIModel
+@enduml

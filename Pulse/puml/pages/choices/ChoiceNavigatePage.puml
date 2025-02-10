@@ -1,0 +1,7 @@
+@startuml
+class ChoiceNavigatePage {
+    + ChoiceNavigatePage(pageManager:PageManager, pageName:string)
+    + Exec() : void
+}
+IChoiceAdapter <|-- ChoiceNavigatePage
+@enduml

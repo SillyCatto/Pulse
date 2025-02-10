@@ -1,0 +1,7 @@
+@startuml
+class DeleteTodo {
+    + DeleteTodo(page:HabitTodoPage)
+    + Exec() : void
+}
+IChoiceAdapter <|-- DeleteTodo
+@enduml
