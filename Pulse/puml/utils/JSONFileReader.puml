@@ -1,8 +1,0 @@
-@startuml
-class JSONFileReader {
-    + JSONFileReader(filePath:string)
-    + Read() : Dictionary<string, List<string>>?
-    + GetValue(key:string) : object?
-}
-IFileReader <|-- JSONFileReader
-@enduml

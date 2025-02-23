@@ -1,8 +1,0 @@
-@startuml
-class JSONFileWriter {
-    + JSONFileWriter(filePath:string)
-    + Write(data:Dictionary<string, List<string>>) : void
-    + UpdateValue(key:string, record:List<string>) : void
-}
-IFileWriter <|-- JSONFileWriter
-@enduml

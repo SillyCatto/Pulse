@@ -1,6 +1,0 @@
-@startuml
-interface IFileReader {
-    Read() : Dictionary<string, List<string>>?
-    GetValue(key:string) : object?
-}
-@enduml

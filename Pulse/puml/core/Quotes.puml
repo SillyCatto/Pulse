@@ -1,5 +1,0 @@
-@startuml
-class Quotes <<static>> {
-    + {static} GetRandom() : string
-}
-@enduml

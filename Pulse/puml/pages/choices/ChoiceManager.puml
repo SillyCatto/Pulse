@@ -1,6 +1,0 @@
-@startuml
-class ChoiceManager {
-    + Add(name:string, choiceFactory:Func<IChoiceAdapter>) : void
-    + ShowAndExecute() : void
-}
-@enduml

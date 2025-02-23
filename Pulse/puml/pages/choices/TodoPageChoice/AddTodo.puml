@@ -1,7 +1,0 @@
-@startuml
-class AddTodo {
-    + AddTodo(page:HabitTodoPage)
-    + Exec() : void
-}
-IChoiceAdapter <|-- AddTodo
-@enduml

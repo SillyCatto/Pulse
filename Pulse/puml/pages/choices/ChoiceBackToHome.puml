@@ -1,7 +1,0 @@
-@startuml
-class ChoiceBackToHome {
-    + ChoiceBackToHome(pageManager:PageManager)
-    + Exec() : void
-}
-IChoiceAdapter <|-- ChoiceBackToHome
-@enduml

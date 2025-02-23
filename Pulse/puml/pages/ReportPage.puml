@@ -1,7 +1,0 @@
-@startuml
-class ReportPage {
-    + View() : void
-    + Run() : void
-}
-IPageAdapter <|-- ReportPage
-@enduml

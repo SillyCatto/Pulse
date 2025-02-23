@@ -1,6 +1,0 @@
-@startuml
-interface IFileWriter {
-    Write(data:Dictionary<string, List<string>>) : void
-    UpdateValue(keyPath:string, record:List<string>) : void
-}
-@enduml

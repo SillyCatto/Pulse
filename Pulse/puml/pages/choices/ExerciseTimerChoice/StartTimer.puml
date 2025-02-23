@@ -1,7 +1,0 @@
-@startuml
-class StartTimer {
-    + StartTimer(page:ExerciseTimerPage)
-    + Exec() : void
-}
-IChoiceAdapter <|-- StartTimer
-@enduml

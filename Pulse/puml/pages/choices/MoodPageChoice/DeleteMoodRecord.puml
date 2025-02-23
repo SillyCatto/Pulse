@@ -1,7 +1,0 @@
-@startuml
-class DeleteMoodRecord {
-    + DeleteMoodRecord(page:MoodTracker)
-    + Exec() : void
-}
-IChoiceAdapter <|-- DeleteMoodRecord
-@enduml
