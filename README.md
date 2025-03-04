@@ -66,3 +66,5 @@ Below is a uml class diagram showing the high-level design architecture of the a
 <p align="center">
     <img src="./resources/Pulse_class_diagram.png" alt="UML Class Diagram">
 </p>
+
+(Note: To avoid cluttering the diagram, extraneous arrows are omitted and only essential and high level relationships among classes and modules are shown)
