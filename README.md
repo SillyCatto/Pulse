@@ -16,14 +16,14 @@
 ## 📌 About the Project
 This project was created for the **OOP-2 Lab final submission**.
 
-The goal of this project is to follow **best practices** in writing clean, maintainable, and modular code while adhering to **SOLID design principles**. The codebase is designed to be **readable, testable, and scalable**.
+The goal of this project is to follow **best practices** in writing clean, maintainable, and modular code while adhering to **SOLID design principles** and **Software Design best practices**. The codebase is designed to be **readable, modular, testable, and scalable**.
 
 ## ✨ Features
-Pulse offers an **intuitive terminal-based user interface** with the following features:
+Pulse offers an **intuitive and beautiful terminal-based user interface** with the following features:
 
 ✅ A random motivational quote about **health and well-being** on the home page.\
 ✅ **Daily BMI calculator** and tracker.\
-✅ **Daily mood and stress tracker** to log emotional well-being.\
+✅ **Daily mood and stress tracker** to log mental and emotional well-being.\
 ✅ **Healthy habit to-do tracker** to encourage positive lifestyle changes.\
 ✅ **Exercise timer and record tracker** for logging workouts.
 
