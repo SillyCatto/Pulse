@@ -1,4 +1,6 @@
-<img src="./resources/Pulse.png" alt="App Logo" width="500" style="border-radius: 25px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);">
+<p align="center">
+    <img src="./resources/Pulse.png" alt="App Logo" width="500">
+</p>
 
 ## Pulse – A Terminal-Based Personal Health Tracker
 
@@ -19,10 +21,10 @@ The goal of this project is to follow **best practices** in writing clean, maint
 ## ✨ Features
 Pulse offers an **intuitive terminal-based user interface** with the following features:
 
-✅ A random motivational quote about **health and well-being** on the home page.
-✅ **Daily BMI calculator** and tracker.
-✅ **Daily mood and stress tracker** to log emotional well-being.
-✅ **Healthy habit to-do tracker** to encourage positive lifestyle changes.
+✅ A random motivational quote about **health and well-being** on the home page.\
+✅ **Daily BMI calculator** and tracker.\
+✅ **Daily mood and stress tracker** to log emotional well-being.\
+✅ **Healthy habit to-do tracker** to encourage positive lifestyle changes.\
 ✅ **Exercise timer and record tracker** for logging workouts.
 
 ---
