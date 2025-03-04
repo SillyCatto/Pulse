@@ -1,5 +1,8 @@
-![](./resources/Pulse.png)
-**A Terminal Based Personal Health Tracker**
+<img src="./resources/Pulse.png" alt="App Logo" width="500">
+
+### A Terminal Based Personal Health Tracker
+
+
 ![C#](https://img.shields.io/badge/language-C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![.NET](https://img.shields.io/badge/framework-.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Version](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge&color=blue)
