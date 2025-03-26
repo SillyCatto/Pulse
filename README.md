@@ -16,7 +16,9 @@
 ## 📌 About the Project
 This project was created for the **OOP-2 Lab final submission**.
 
-The goal of this project is to follow **best practices** in writing clean, maintainable, and modular code while adhering to **SOLID design principles** and **Software Design best practices**. The codebase is designed to be **readable, modular, testable, and scalable**.
+The objective of this project is to promote a healthy lifestyle by providing an easy to use console application for tracking various aspects of personal health and motivating users to maintain and improve their overall health and well being.
+
+The project adheres to best practices in object-oriented programming (OOP) and follows the **SOLID principles** to ensure clean, modular, and maintainable code.
 
 ## ✨ Features
 Pulse offers an **intuitive and beautiful terminal-based user interface** with the following features:
