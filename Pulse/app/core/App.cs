@@ -39,28 +39,4 @@ public class App
         AnsiConsole.MarkupLine(":grinning_face_with_smiling_eyes: [bold green]Goodbye![/]");
         Environment.Exit(0);
     }
-
-    private void Test()
-    {
-        // Dictionary<string, object> data = new Dictionary<string, object>
-        // {
-        //     {
-        //         "user", new Dictionary<string, object>
-        //         {
-        //             { "name", "Alice" } 
-        //             
-        //         } 
-        //         
-        //     }
-        // };
-        //
-        // var writer = new JSONFileWriter(FilePath.UserDataPath);
-        // writer.Write(data);
-        // writer.UpdateValue("user.age", 10);
-        // Console.WriteLine(new JSONFileReader(FilePath.UserDataPath).Read());
-
-        // var bmiModel = new JSONModelHandler<BMIModel>(Constants.BMIDataPath);
-        // bmiModel.AddRecord(DateTime.Now.ToString(Constants.DateStringFormat), new BMIRecord(25));
-        // bmiModel.Save();
-    }
 }

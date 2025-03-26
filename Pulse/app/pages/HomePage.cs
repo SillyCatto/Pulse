@@ -60,9 +60,10 @@ public class HomePage : IPageAdapter
     public void Run()
     {
         View();
-
-        // later add: .Where(name => name != "Home") here to remove "Home"
-        var choices = _pageManager.GetPageNames().Append("Exit").ToList();
+        
+        var choices = _pageManager.GetPageNames()
+            .Where(name => name != "Home")
+            .Append("Exit").ToList();
 
         string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
